@@ -121,13 +121,13 @@ function ProjectPage() {
                   {row.map((img) => <Img key={img.src} img={img} />)}
                 </div>
               ) : (
-                <Img key={k} img={row[0]} className={row[0].layout === "contained" ? "mx-auto max-w-4xl" : ""} />
+                <Img key={k} img={row[0]!} className={row[0]!.layout === "contained" ? "mx-auto max-w-4xl" : ""} />
               ),
             )}
           </div>
         )}
 
-        {all.length > 1 && (
+        {all.length > 1 && prev && next && (
           <nav aria-label="Project navigation" className="mt-32 flex justify-between border-t pt-8">
             <Link to="/projects/$slug" params={{ slug: prev.slug }} className="group">
               <span className="label-caps text-muted-foreground">← Previous</span>
