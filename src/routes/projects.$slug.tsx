@@ -52,7 +52,7 @@ function groupImages(images: ProjectImage[]) {
   const rows: ProjectImage[][] = [];
   for (const img of images) {
     const last = rows[rows.length - 1];
-    if (img.layout === "half" && last && last.length === 1 && last[0].layout === "half") last.push(img);
+    if (img.layout === "half" && last && last.length === 1 && last[0]!.layout === "half") last.push(img);
     else rows.push([img]);
   }
   return rows;

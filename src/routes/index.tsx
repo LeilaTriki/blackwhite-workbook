@@ -48,7 +48,7 @@ function Home() {
         </div>
         <div className="grid gap-x-10 gap-y-24 md:grid-cols-12">
           {featured.map((p, i) => {
-            const l = layouts[i % layouts.length];
+            const l = layouts[i % layouts.length]!;
             return (
               <div key={p.slug} className={l.wrap}>
                 <ProjectCard p={p} aspect={l.aspect} />
