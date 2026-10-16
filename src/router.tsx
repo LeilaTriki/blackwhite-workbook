@@ -25,8 +25,9 @@ export const getRouter = () => {
     context: { queryClient },
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
-    defaultOnCatch: (err: Error) => {
-      if (typeof window !== "undefined" && /dynamically imported module|Importing a module script failed/i.test(err?.message ?? "")) {
+    defaultOnCatch: (error: unknown) => {
+      const msg = error instanceof Error ? error.message : String(error ?? "");
+      if (typeof window !== "undefined" && /dynamically imported module|Importing a module script failed/i.test(msg)) {
         const last = Number(sessionStorage.getItem("chunk-reload-at") || 0);
         if (Date.now() - last > 10000) {
           sessionStorage.setItem("chunk-reload-at", String(Date.now()));
