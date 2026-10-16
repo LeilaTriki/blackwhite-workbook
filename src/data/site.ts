@@ -3,7 +3,7 @@
  * Everything in [brackets] is a placeholder to replace.
  */
 export const site = {
-  name: "Your Name",
+  name: "LEILA TRIKI",
   statement: "Architecture, space, and material.",
   heroImage: {
     src: "/images/projects/placeholder-project-01/cover.jpg",
@@ -28,7 +28,7 @@ export const site = {
     achievements: [{ year: "[Year]", title: "[Award or exhibition]" }],
   },
   contact: {
-    email: "your.email@example.com",
+    email: "LEILATRIKICPRO@GMAIL.COM",
     links: [
       { label: "Instagram", href: "https://instagram.com/" },
       { label: "LinkedIn", href: "https://linkedin.com/" },
