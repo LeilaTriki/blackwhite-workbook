@@ -3,15 +3,57 @@
  *  YOUR PROJECTS — edit this file to manage your portfolio.
  * ============================================================
  *
- *  • Images go in:  public/images/projects/<project-slug>/
- *    and are referenced as "/images/projects/<project-slug>/file.jpg"
+ *  • Images are CDN-hosted; each import below points to an
+ *    .asset.json file under src/assets/projects/<slug>/.
  *  • Array order = display order on the Projects page.
  *  • featured: true  → appears on the homepage.
  *  • published: false → hidden everywhere.
  *  • Every field marked "?" is optional; leave it out to hide it.
- *
- *  The three entries below are PLACEHOLDERS. Replace them with your own work.
+ *  • photos[] always renders before drawings[] on the project page.
  */
+
+// Halle événementielle
+import halleP1 from "@/assets/projects/halle-evenementielle/photos-01.jpg.asset.json";
+import halleP2 from "@/assets/projects/halle-evenementielle/photos-02.png.asset.json";
+import halleP3 from "@/assets/projects/halle-evenementielle/photos-03.jpg.asset.json";
+import halleP4 from "@/assets/projects/halle-evenementielle/photos-04.jpg.asset.json";
+import halleP5 from "@/assets/projects/halle-evenementielle/photos-05.jpg.asset.json";
+import halleD1 from "@/assets/projects/halle-evenementielle/drawings-01-plan.png.asset.json";
+import halleD2 from "@/assets/projects/halle-evenementielle/drawings-02-elevation.png.asset.json";
+import halleD3 from "@/assets/projects/halle-evenementielle/drawings-03-coupe-a-a.png.asset.json";
+import halleD4 from "@/assets/projects/halle-evenementielle/drawings-04-coupe-b-b.png.asset.json";
+
+// Forum des arts traditionnels d'El Halfaouine (reconversion du palais)
+import forumP1 from "@/assets/projects/reconversion-palais/photos-01.jpg.asset.json";
+import forumP2 from "@/assets/projects/reconversion-palais/photos-02.jpg.asset.json";
+import forumP3 from "@/assets/projects/reconversion-palais/photos-03.png.asset.json";
+import forumP4 from "@/assets/projects/reconversion-palais/photos-04.jpg.asset.json";
+import forumP5 from "@/assets/projects/reconversion-palais/photos-05.jpg.asset.json";
+import forumP6 from "@/assets/projects/reconversion-palais/photos-06.jpg.asset.json";
+import forumP7 from "@/assets/projects/reconversion-palais/photos-07.jpg.asset.json";
+import forumP8 from "@/assets/projects/reconversion-palais/photos-08.jpg.asset.json";
+import forumD1 from "@/assets/projects/reconversion-palais/drawings-01-plan-rdc.png.asset.json";
+import forumD2 from "@/assets/projects/reconversion-palais/drawings-02-plan-1er-etage.png.asset.json";
+import forumD3 from "@/assets/projects/reconversion-palais/drawings-02-plan-2eme-etage.png.asset.json";
+import forumD4 from "@/assets/projects/reconversion-palais/drawings-04-plan-sous-sol.png.asset.json";
+import forumD5 from "@/assets/projects/reconversion-palais/drawings-05-elevation-sud.png.asset.json";
+import forumD6 from "@/assets/projects/reconversion-palais/drawings-06-elevation-ouest.png.asset.json";
+import forumD7 from "@/assets/projects/reconversion-palais/drawings-07-coupe-aa.png.asset.json";
+import forumD8 from "@/assets/projects/reconversion-palais/drawings-08-coupe-bb.png.asset.json";
+import forumD9 from "@/assets/projects/reconversion-palais/drawings-09-coupe-cc.png.asset.json";
+
+// Musée de l'écriture
+import museeP1 from "@/assets/projects/musee-de-lecriture/photos-01.jpg.asset.json";
+import museeP2 from "@/assets/projects/musee-de-lecriture/photos-02.jpg.asset.json";
+import museeP3 from "@/assets/projects/musee-de-lecriture/photos-03.jpg.asset.json";
+import museeP4 from "@/assets/projects/musee-de-lecriture/photos-04.jpg.asset.json";
+import museeP5 from "@/assets/projects/musee-de-lecriture/photos-05.jpg.asset.json";
+import museeP6 from "@/assets/projects/musee-de-lecriture/photos-06.jpg.asset.json";
+import museeD1 from "@/assets/projects/musee-de-lecriture/drawings-01-plan-rdc.png.asset.json";
+import museeD2 from "@/assets/projects/musee-de-lecriture/drawings-02-plan-sous-sol.png.asset.json";
+import museeD3 from "@/assets/projects/musee-de-lecriture/drawings-03-elevation.png.asset.json";
+import museeD4 from "@/assets/projects/musee-de-lecriture/drawings-04-coupe-a-a.png.asset.json";
+import museeD5 from "@/assets/projects/musee-de-lecriture/drawings-05-coupe-b-b.png.asset.json";
 
 export type ProjectCategory =
   | "Residential Architecture"
@@ -57,7 +99,6 @@ export interface ProjectImage {
 export interface Project {
   slug: string; // used in the URL: /projects/<slug>
   title: string;
-  placeholder?: boolean; // shows a "Placeholder" label — remove for real work
   published: boolean;
   featured: boolean;
   category: ProjectCategory;
@@ -70,97 +111,112 @@ export interface Project {
   concept?: string[];
   materials?: string[];
   specifications?: { label: string; value: string }[];
-  images?: ProjectImage[];
+  photos?: ProjectImage[]; // Section 3 — Photos & Visualizations
+  drawings?: ProjectImage[]; // Section 4 — Architectural Drawings
 }
 
 export const projects: Project[] = [
   {
-    slug: "placeholder-project-01",
-    title: "Halle événementielle",
-    placeholder: true,
+    slug: "halle-evenementielle",
+    title: "Halle événementielle",
     published: true,
     featured: true,
     category: "Public and Cultural Architecture",
     status: "Conceptual project",
-    location: "MONTPLAISIR",
-    year: "YEAR",
+    location: "Montplaisir",
     cover: {
-      src: "/images/projects/placeholder-project-01/cover.jpg",
-      alt: "Placeholder image: white house on a hillside",
+      src: halleP1.url,
+      alt: "Halle événementielle — exterior view",
     },
     shortDescription:
-      "Placeholder — replace with a one-sentence summary of your project.",
+      "[To complete] A one-sentence summary of the project.",
     description: [
-      "Placeholder text. Replace this paragraph with the full description of your project: the brief, the site and the main design decisions.",
+      "[To complete] Describe the brief, the site and the main design decisions of the Halle événementielle.",
     ],
-    concept: [
-      "Placeholder text. Describe your design concept and architectural approach here.",
+    photos: [
+      { src: halleP1.url, alt: "Halle événementielle — view 1", kind: "render" },
+      { src: halleP2.url, alt: "Halle événementielle — view 2", kind: "render" },
+      { src: halleP3.url, alt: "Halle événementielle — view 3", kind: "render", layout: "half" },
+      { src: halleP4.url, alt: "Halle événementielle — view 4", kind: "render", layout: "half" },
+      { src: halleP5.url, alt: "Halle événementielle — view 5", kind: "render" },
     ],
-    materials: ["Placeholder material 1", "Placeholder material 2"],
-    specifications: [
-      { label: "Area", value: "— m²" },
-      { label: "Program", value: "To be added" },
-    ],
-    images: [
-      {
-        src: "/images/projects/placeholder-project-01/plan.jpg",
-        alt: "Placeholder floor plan drawing",
-        caption: "Placeholder — ground floor plan",
-        kind: "plan",
-        layout: "contained",
-      },
-      {
-        src: "/images/projects/placeholder-project-02/cover.jpg",
-        alt: "Placeholder interior image",
-        kind: "photo",
-        layout: "half",
-      },
-      {
-        src: "/images/projects/placeholder-project-03/cover.jpg",
-        alt: "Placeholder model photograph",
-        kind: "model",
-        layout: "half",
-      },
+    drawings: [
+      { src: halleD1.url, alt: "Halle événementielle — plan", caption: "Plan", kind: "plan", layout: "contained" },
+      { src: halleD2.url, alt: "Halle événementielle — elevation", caption: "Élévation", kind: "elevation", layout: "contained" },
+      { src: halleD3.url, alt: "Halle événementielle — section A-A", caption: "Coupe A-A", kind: "section", layout: "contained" },
+      { src: halleD4.url, alt: "Halle événementielle — section B-B", caption: "Coupe B-B", kind: "section", layout: "contained" },
     ],
   },
   {
-    slug: "placeholder-project-02",
+    slug: "forum-arts-el-halfaouine",
     title: "Forum des arts traditionnels d'El Halfaouine",
-    placeholder: true,
     published: true,
     featured: true,
     category: "Public and Cultural Architecture",
     status: "Academic project",
-    location: "EL HALFAOUINE",
-    year: "YEAR",
+    location: "El Halfaouine",
     cover: {
-      src: "/images/projects/placeholder-project-02/cover.jpg",
-      alt: "Placeholder image: white interior with skylight",
+      src: forumP1.url,
+      alt: "Forum des arts traditionnels d'El Halfaouine — exterior view",
     },
     shortDescription:
-      "Placeholder — replace with a one-sentence summary of your project.",
+      "[To complete] A one-sentence summary of the project.",
     description: [
-      "Placeholder text. Replace with your own project description.",
+      "[To complete] Describe the brief, the site and the main design decisions of the Forum des arts traditionnels.",
+    ],
+    photos: [
+      { src: forumP1.url, alt: "Forum des arts traditionnels — view 1", kind: "render" },
+      { src: forumP2.url, alt: "Forum des arts traditionnels — view 2", kind: "render" },
+      { src: forumP3.url, alt: "Forum des arts traditionnels — view 3", kind: "render" },
+      { src: forumP4.url, alt: "Forum des arts traditionnels — view 4", kind: "render", layout: "half" },
+      { src: forumP5.url, alt: "Forum des arts traditionnels — view 5", kind: "render", layout: "half" },
+      { src: forumP6.url, alt: "Forum des arts traditionnels — view 6", kind: "render", layout: "half" },
+      { src: forumP7.url, alt: "Forum des arts traditionnels — view 7", kind: "render", layout: "half" },
+      { src: forumP8.url, alt: "Forum des arts traditionnels — view 8", kind: "render" },
+    ],
+    drawings: [
+      { src: forumD1.url, alt: "Forum des arts traditionnels — ground floor plan", caption: "Plan RDC", kind: "plan", layout: "contained" },
+      { src: forumD2.url, alt: "Forum des arts traditionnels — first floor plan", caption: "Plan 1er étage", kind: "plan", layout: "contained" },
+      { src: forumD3.url, alt: "Forum des arts traditionnels — second floor plan", caption: "Plan 2ème étage", kind: "plan", layout: "contained" },
+      { src: forumD4.url, alt: "Forum des arts traditionnels — basement plan", caption: "Plan sous-sol", kind: "plan", layout: "contained" },
+      { src: forumD5.url, alt: "Forum des arts traditionnels — south elevation", caption: "Élévation sud", kind: "elevation", layout: "contained" },
+      { src: forumD6.url, alt: "Forum des arts traditionnels — west elevation", caption: "Élévation ouest", kind: "elevation", layout: "contained" },
+      { src: forumD7.url, alt: "Forum des arts traditionnels — section AA", caption: "Coupe AA", kind: "section", layout: "contained" },
+      { src: forumD8.url, alt: "Forum des arts traditionnels — section BB", caption: "Coupe BB", kind: "section", layout: "contained" },
+      { src: forumD9.url, alt: "Forum des arts traditionnels — section CC", caption: "Coupe CC", kind: "section", layout: "contained" },
     ],
   },
   {
-    slug: "placeholder-project-03",
+    slug: "musee-de-lecriture",
     title: "Musée de l'écriture",
-    placeholder: true,
     published: true,
     featured: true,
     category: "Public and Cultural Architecture",
     status: "Competition",
-    location: "CENTRE URBAIN NORD",
-    year: "YEAR",
+    location: "Centre Urbain Nord",
     cover: {
-      src: "/images/projects/placeholder-project-03/cover.jpg",
-      alt: "Placeholder image: white architectural model",
+      src: museeP1.url,
+      alt: "Musée de l'écriture — exterior view",
     },
     shortDescription:
-      "Placeholder — replace with a one-sentence summary of your project.",
+      "[To complete] A one-sentence summary of the project.",
     description: [
-      "Placeholder text. Replace with your own project description.",
+      "[To complete] Describe the brief, the site and the main design decisions of the Musée de l'écriture.",
+    ],
+    photos: [
+      { src: museeP1.url, alt: "Musée de l'écriture — view 1", kind: "render" },
+      { src: museeP2.url, alt: "Musée de l'écriture — view 2", kind: "render", layout: "half" },
+      { src: museeP3.url, alt: "Musée de l'écriture — view 3", kind: "render", layout: "half" },
+      { src: museeP4.url, alt: "Musée de l'écriture — view 4", kind: "render", layout: "half" },
+      { src: museeP5.url, alt: "Musée de l'écriture — view 5", kind: "render", layout: "half" },
+      { src: museeP6.url, alt: "Musée de l'écriture — view 6", kind: "render" },
+    ],
+    drawings: [
+      { src: museeD1.url, alt: "Musée de l'écriture — ground floor plan", caption: "Plan RDC", kind: "plan", layout: "contained" },
+      { src: museeD2.url, alt: "Musée de l'écriture — basement plan", caption: "Plan sous-sol", kind: "plan", layout: "contained" },
+      { src: museeD3.url, alt: "Musée de l'écriture — elevation", caption: "Élévation", kind: "elevation", layout: "contained" },
+      { src: museeD4.url, alt: "Musée de l'écriture — section A-A", caption: "Coupe A-A", kind: "section", layout: "contained" },
+      { src: museeD5.url, alt: "Musée de l'écriture — section B-B", caption: "Coupe B-B", kind: "section", layout: "contained" },
     ],
   },
 ];
