@@ -76,7 +76,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "placeholder-project-01",
-    title: "Halle évènementielle",
+    title: "Halle événementielle",
     placeholder: true,
     published: true,
     featured: true,
