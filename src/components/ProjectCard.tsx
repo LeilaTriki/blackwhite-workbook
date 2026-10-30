@@ -9,11 +9,6 @@ export function ProjectMeta({ p }: { p: Project }) {
   );
 }
 
-export function PlaceholderTag({ p }: { p: Project }) {
-  if (!p.placeholder) return null;
-  return <span className="label-caps border px-2 py-1 text-muted-foreground">Placeholder</span>;
-}
-
 export function ProjectCard({ p, aspect = "aspect-[4/3]" }: { p: Project; aspect?: string }) {
   return (
     <Link to="/projects/$slug" params={{ slug: p.slug }} className="group block">
@@ -25,7 +20,6 @@ export function ProjectCard({ p, aspect = "aspect-[4/3]" }: { p: Project; aspect
           <h3 className="text-2xl md:text-3xl">{p.title}</h3>
           <div className="mt-2"><ProjectMeta p={p} /></div>
         </div>
-        <PlaceholderTag p={p} />
       </div>
     </Link>
   );
