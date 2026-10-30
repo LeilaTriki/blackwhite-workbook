@@ -2,12 +2,14 @@
  * YOUR PERSONAL INFORMATION — edit text here.
  * Everything in [brackets] is a placeholder to replace.
  */
+import heroImg from "@/assets/projects/halle-evenementielle/photos-01.jpg.asset.json";
+
 export const site = {
   name: "LEILA TRIKI",
   statement: "Architecture, space, and material.",
   heroImage: {
-    src: "/images/projects/placeholder-project-01/cover.jpg",
-    alt: "Placeholder hero image: white house on a hillside",
+    src: heroImg.url,
+    alt: "Halle événementielle — exterior view",
   },
   intro:
     "[Placeholder] A short introduction about you and your architectural approach. Two or three sentences are enough.",
