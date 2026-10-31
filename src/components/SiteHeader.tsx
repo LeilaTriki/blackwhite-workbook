@@ -4,6 +4,7 @@ import { site } from "@/data/site";
 
 const nav = [
   { to: "/projects", label: "Projects" },
+  { to: "/services", label: "Services" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;

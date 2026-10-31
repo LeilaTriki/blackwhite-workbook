@@ -124,3 +124,13 @@
   body { font-family: var(--font-sans); font-weight: 300; -webkit-font-smoothing: antialiased; }
   h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
 }
+
+.revit-services,
+.revit-services * {
+  letter-spacing: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revit-services .fade-up { animation: none; }
+  .revit-services .img-zoom { transition: none; }
+}
