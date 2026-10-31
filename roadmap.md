@@ -4,6 +4,6 @@
 - [x] Verify contact link and desktop/mobile presentation.
 
 # Project image captions
-- [ ] Add independent editable image titles and introductory lines, excluding conceptual graphics.
-- [ ] Present captions above architectural images without altering image layouts.
-- [ ] Verify all projects, image enlargement, and mobile presentation.
+- [x] Add independent editable image titles and introductory lines, excluding conceptual graphics.
+- [x] Present captions above architectural images without altering image layouts.
+- [x] Verify all projects, image enlargement, and mobile presentation.
