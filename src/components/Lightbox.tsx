@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ProjectImage } from "@/data/projects";
+import { ProjectImageCaption } from "@/components/ProjectImageCaption";
 
 /**
  * Full-screen image viewer. Click any gallery image to open it,
@@ -63,6 +64,7 @@ export function Lightbox({
           Close ✕
         </button>
       </div>
+      <div className="px-6 md:px-12"><ProjectImageCaption image={img} /></div>
       <div className="flex min-h-0 flex-1 items-center justify-center px-6 pb-6 md:px-12">
         <img
           src={img.src}

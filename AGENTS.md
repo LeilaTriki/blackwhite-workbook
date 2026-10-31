@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep professional services in the dedicated `/services` route and reuse existing portfolio assets with factual captions; this preserves existing pages and avoids implying unverified Revit provenance.
+- Store image-specific introductory lines and titles on project image records and render them through the shared ProjectImageCaption with a centralized eligibility rule; explicit exclusions keep conceptual boards and decorative visuals uncaptioned.

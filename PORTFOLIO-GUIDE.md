@@ -18,3 +18,7 @@
 
 ## Category filters
 Filters on the Projects page appear automatically only for categories that have projects.
+
+## Image captions
+Each architectural image in `src/data/projects.ts` (including `cover`, `photos`, and `drawings`) has its own editable `eyebrow` introductory line and `title`, displayed immediately above it. Update those two fields independently to customize an image’s caption.
+Set `captionExcluded: true` for decorative images or composite conceptual/graphic boards. Diagrams, sketches, and collages are excluded automatically. The original image sources, order, and layouts remain unchanged.

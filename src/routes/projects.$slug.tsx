@@ -3,6 +3,8 @@ import { useState } from "react";
 import { getProject, publishedProjects, type ProjectImage } from "@/data/projects";
 import { Lightbox } from "@/components/Lightbox";
 import { site } from "@/data/site";
+import { ProjectImageCaption } from "@/components/ProjectImageCaption";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/projects/$slug")({
   loader: ({ params }) => {
@@ -21,6 +23,7 @@ export const Route = createFileRoute("/projects/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },
@@ -45,10 +48,12 @@ function Img({
   const drawing = ["plan", "section", "elevation", "diagram", "sketch"].includes(img.kind ?? "");
   return (
     <figure className={className}>
-      <button
+      <ProjectImageCaption image={img} />
+      <Button
+        variant="ghost"
         onClick={onOpen}
         aria-label={`Enlarge: ${img.alt}`}
-        className="block w-full cursor-zoom-in"
+        className="block h-auto w-full cursor-zoom-in rounded-none p-0 hover:bg-transparent"
       >
         <img
           src={img.src}
@@ -56,7 +61,7 @@ function Img({
           loading="lazy"
           className={`h-auto w-full ${drawing ? "object-contain" : ""}`}
         />
-      </button>
+      </Button>
       {img.caption && <figcaption className="label-caps mt-3 text-muted-foreground">{img.caption}</figcaption>}
     </figure>
   );
@@ -67,7 +72,7 @@ function groupImages(images: ProjectImage[]) {
   const rows: ProjectImage[][] = [];
   for (const img of images) {
     const last = rows[rows.length - 1];
-    if (img.layout === "half" && last && last.length === 1 && last[0]!.layout === "half") last.push(img);
+    if (img.layout === "half" && last && last.length === 1 && last[0]?.layout === "half") last.push(img);
     else rows.push([img]);
   }
   return rows;
@@ -82,8 +87,10 @@ function Gallery({
 }) {
   return (
     <div className="mt-12 space-y-16 md:space-y-24">
-      {groupImages(images).map((row, k) =>
-        row.length === 2 ? (
+      {groupImages(images).map((row, k) => {
+        const first = row[0];
+        if (!first) return null;
+        return row.length === 2 ? (
           <div key={k} className="grid gap-10 md:grid-cols-2">
             {row.map((img) => (
               <Img key={img.src} img={img} onOpen={() => onOpen(images.indexOf(img))} />
@@ -92,12 +99,12 @@ function Gallery({
         ) : (
           <Img
             key={k}
-            img={row[0]!}
-            className={row[0]!.layout === "contained" ? "mx-auto max-w-4xl" : ""}
-            onOpen={() => onOpen(images.indexOf(row[0]!))}
+            img={first}
+            className={first.layout === "contained" ? "mx-auto max-w-4xl" : ""}
+            onOpen={() => onOpen(images.indexOf(first))}
           />
-        ),
-      )}
+        );
+      })}
     </div>
   );
 }
@@ -127,6 +134,9 @@ function ProjectPage() {
   return (
     <article>
       {/* SECTION 1 — Hero */}
+      <div className="mx-auto max-w-[1600px] px-6 pt-28 md:px-12">
+        <ProjectImageCaption image={p.cover} />
+      </div>
       <div className="h-[85vh] w-full overflow-hidden bg-muted">
         <img src={p.cover.src} alt={p.cover.alt} className="h-full w-full object-cover" />
       </div>
@@ -189,6 +199,7 @@ function ProjectPage() {
             <div className="mt-10 grid gap-10 md:grid-cols-2">
               <Link to="/projects/$slug" params={{ slug: prev.slug }} className="group">
                 <span className="label-caps text-muted-foreground">← Previous</span>
+                <div className="mt-4"><ProjectImageCaption image={prev.cover} /></div>
                 <div className="mt-4 aspect-[16/9] overflow-hidden bg-muted">
                   <img src={prev.cover.src} alt={prev.cover.alt} loading="lazy" className="img-zoom h-full w-full object-cover" />
                 </div>
@@ -196,6 +207,7 @@ function ProjectPage() {
               </Link>
               <Link to="/projects/$slug" params={{ slug: next.slug }} className="group md:text-right">
                 <span className="label-caps text-muted-foreground">Next →</span>
+                <div className="mt-4"><ProjectImageCaption image={next.cover} /></div>
                 <div className="mt-4 aspect-[16/9] overflow-hidden bg-muted">
                   <img src={next.cover.src} alt={next.cover.alt} loading="lazy" className="img-zoom h-full w-full object-cover" />
                 </div>
