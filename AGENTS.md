@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep professional services in the dedicated `/services` route and reuse existing portfolio assets with factual captions; this preserves existing pages and avoids implying unverified Revit provenance.
