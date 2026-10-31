@@ -87,6 +87,11 @@ export interface ProjectImage {
   src: string;
   alt: string;
   caption?: string;
+  /** Independent editable text displayed above architectural images. */
+  eyebrow?: string;
+  title?: string;
+  /** Exclude decorative images and composite conceptual/graphic boards. */
+  captionExcluded?: boolean;
   kind?: ImageKind;
   /**
    * "full"  – full width (default)
@@ -105,7 +110,7 @@ export interface Project {
   status?: ProjectStatus;
   location?: string;
   year?: string;
-  cover: { src: string; alt: string };
+  cover: ProjectImage;
   shortDescription?: string;
   description?: string[]; // paragraphs
   concept?: string[];
@@ -127,6 +132,9 @@ export const projects: Project[] = [
     cover: {
       src: halleP1.url,
       alt: "Halle événementielle — exterior view",
+      kind: "render",
+      eyebrow: "Halle événementielle · Exterior visualization",
+      title: "The illuminated hall and forecourt",
     },
     shortDescription:
       "[To complete] A one-sentence summary of the project.",
@@ -134,17 +142,17 @@ export const projects: Project[] = [
       "[To complete] Describe the brief, the site and the main design decisions of the Halle événementielle.",
     ],
     photos: [
-      { src: halleP1.url, alt: "Halle événementielle — view 1", kind: "render" },
-      { src: halleP2.url, alt: "Halle événementielle — view 2", kind: "render" },
-      { src: halleP3.url, alt: "Halle événementielle — view 3", kind: "render", layout: "half" },
-      { src: halleP4.url, alt: "Halle événementielle — view 4", kind: "render", layout: "half" },
-      { src: halleP5.url, alt: "Halle événementielle — view 5", kind: "render" },
+      { src: halleP1.url, alt: "Halle événementielle — view 1", kind: "render", eyebrow: "Exterior · Evening perspective", title: "Arrival across the forecourt" },
+      { src: halleP2.url, alt: "Halle événementielle — view 2", kind: "render", captionExcluded: true },
+      { src: halleP3.url, alt: "Halle événementielle — view 3", kind: "render", layout: "half", eyebrow: "Facade · Daylight perspective", title: "The glazed hall above its base" },
+      { src: halleP4.url, alt: "Halle événementielle — view 4", kind: "render", layout: "half", eyebrow: "Interior · Event space", title: "Gathering beneath the glazed roof" },
+      { src: halleP5.url, alt: "Halle événementielle — view 5", kind: "render", eyebrow: "Envelope · Night perspective", title: "Illuminated structure at close range" },
     ],
     drawings: [
-      { src: halleD1.url, alt: "Halle événementielle — plan", caption: "Plan", kind: "plan", layout: "contained" },
-      { src: halleD2.url, alt: "Halle événementielle — elevation", caption: "Élévation", kind: "elevation", layout: "contained" },
-      { src: halleD3.url, alt: "Halle événementielle — section A-A", caption: "Coupe A-A", kind: "section", layout: "contained" },
-      { src: halleD4.url, alt: "Halle événementielle — section B-B", caption: "Coupe B-B", kind: "section", layout: "contained" },
+      { src: halleD1.url, alt: "Halle événementielle — plan", caption: "Plan", kind: "plan", layout: "contained", eyebrow: "Architectural drawing · Spatial organization", title: "Hall plan" },
+      { src: halleD2.url, alt: "Halle événementielle — elevation", caption: "Élévation", kind: "elevation", layout: "contained", eyebrow: "Architectural drawing · Facade", title: "Hall elevation" },
+      { src: halleD3.url, alt: "Halle événementielle — section A-A", caption: "Coupe A-A", kind: "section", layout: "contained", eyebrow: "Architectural drawing · Sectional study A-A", title: "Section A-A" },
+      { src: halleD4.url, alt: "Halle événementielle — section B-B", caption: "Coupe B-B", kind: "section", layout: "contained", eyebrow: "Architectural drawing · Sectional study B-B", title: "Section B-B" },
     ],
   },
   {
@@ -158,6 +166,9 @@ export const projects: Project[] = [
     cover: {
       src: forumP1.url,
       alt: "Forum des arts traditionnels d'El Halfaouine — exterior view",
+      kind: "render",
+      eyebrow: "Forum des arts traditionnels · Exterior visualization",
+      title: "The palace within its urban setting",
     },
     shortDescription:
       "[To complete] A one-sentence summary of the project.",
@@ -165,25 +176,25 @@ export const projects: Project[] = [
       "[To complete] Describe the brief, the site and the main design decisions of the Forum des arts traditionnels.",
     ],
     photos: [
-      { src: forumP1.url, alt: "Forum des arts traditionnels — view 1", kind: "render" },
-      { src: forumP2.url, alt: "Forum des arts traditionnels — view 2", kind: "render" },
-      { src: forumP3.url, alt: "Forum des arts traditionnels — view 3", kind: "render" },
-      { src: forumP4.url, alt: "Forum des arts traditionnels — view 4", kind: "render", layout: "half" },
-      { src: forumP5.url, alt: "Forum des arts traditionnels — view 5", kind: "render", layout: "half" },
-      { src: forumP6.url, alt: "Forum des arts traditionnels — view 6", kind: "render", layout: "half" },
-      { src: forumP7.url, alt: "Forum des arts traditionnels — view 7", kind: "render", layout: "half" },
-      { src: forumP8.url, alt: "Forum des arts traditionnels — view 8", kind: "render" },
+      { src: forumP1.url, alt: "Forum des arts traditionnels — view 1", kind: "render", eyebrow: "Urban setting · Evening perspective", title: "The palace above the surrounding rooftops" },
+      { src: forumP2.url, alt: "Forum des arts traditionnels — view 2", kind: "render", captionExcluded: true },
+      { src: forumP3.url, alt: "Forum des arts traditionnels — view 3", kind: "render", captionExcluded: true },
+      { src: forumP4.url, alt: "Forum des arts traditionnels — view 4", kind: "render", layout: "half", eyebrow: "Site · Overhead visualization", title: "Courtyards and the surrounding urban fabric" },
+      { src: forumP5.url, alt: "Forum des arts traditionnels — view 5", kind: "render", layout: "half", eyebrow: "Exterior · Aerial perspective", title: "The palace and planted terraces" },
+      { src: forumP6.url, alt: "Forum des arts traditionnels — view 6", kind: "render", layout: "half", eyebrow: "Interior · Courtyard edge", title: "A glazed passage beside the courtyard" },
+      { src: forumP7.url, alt: "Forum des arts traditionnels — view 7", kind: "render", layout: "half", eyebrow: "Outdoor space · Terrace perspective", title: "Gathering on the open terrace" },
+      { src: forumP8.url, alt: "Forum des arts traditionnels — view 8", kind: "render", eyebrow: "Interior · Workshop perspective", title: "The ceramics workshop" },
     ],
     drawings: [
-      { src: forumD1.url, alt: "Forum des arts traditionnels — ground floor plan", caption: "Plan RDC", kind: "plan", layout: "contained" },
-      { src: forumD2.url, alt: "Forum des arts traditionnels — first floor plan", caption: "Plan 1er étage", kind: "plan", layout: "contained" },
-      { src: forumD3.url, alt: "Forum des arts traditionnels — second floor plan", caption: "Plan 2ème étage", kind: "plan", layout: "contained" },
-      { src: forumD4.url, alt: "Forum des arts traditionnels — basement plan", caption: "Plan sous-sol", kind: "plan", layout: "contained" },
-      { src: forumD5.url, alt: "Forum des arts traditionnels — south elevation", caption: "Élévation sud", kind: "elevation", layout: "contained" },
-      { src: forumD6.url, alt: "Forum des arts traditionnels — west elevation", caption: "Élévation ouest", kind: "elevation", layout: "contained" },
-      { src: forumD7.url, alt: "Forum des arts traditionnels — section AA", caption: "Coupe AA", kind: "section", layout: "contained" },
-      { src: forumD8.url, alt: "Forum des arts traditionnels — section BB", caption: "Coupe BB", kind: "section", layout: "contained" },
-      { src: forumD9.url, alt: "Forum des arts traditionnels — section CC", caption: "Coupe CC", kind: "section", layout: "contained" },
+      { src: forumD1.url, alt: "Forum des arts traditionnels — ground floor plan", caption: "Plan RDC", kind: "plan", layout: "contained", eyebrow: "Architectural drawing · Ground level", title: "Ground floor plan" },
+      { src: forumD2.url, alt: "Forum des arts traditionnels — first floor plan", caption: "Plan 1er étage", kind: "plan", layout: "contained", eyebrow: "Architectural drawing · First level", title: "First floor plan" },
+      { src: forumD3.url, alt: "Forum des arts traditionnels — second floor plan", caption: "Plan 2ème étage", kind: "plan", layout: "contained", eyebrow: "Architectural drawing · Second level", title: "Second floor plan" },
+      { src: forumD4.url, alt: "Forum des arts traditionnels — basement plan", caption: "Plan sous-sol", kind: "plan", layout: "contained", eyebrow: "Architectural drawing · Below ground", title: "Basement plan" },
+      { src: forumD5.url, alt: "Forum des arts traditionnels — south elevation", caption: "Élévation sud", kind: "elevation", layout: "contained", eyebrow: "Architectural drawing · South facade", title: "South elevation" },
+      { src: forumD6.url, alt: "Forum des arts traditionnels — west elevation", caption: "Élévation ouest", kind: "elevation", layout: "contained", eyebrow: "Architectural drawing · West facade", title: "West elevation" },
+      { src: forumD7.url, alt: "Forum des arts traditionnels — section AA", caption: "Coupe AA", kind: "section", layout: "contained", eyebrow: "Architectural drawing · Sectional study AA", title: "Section AA" },
+      { src: forumD8.url, alt: "Forum des arts traditionnels — section BB", caption: "Coupe BB", kind: "section", layout: "contained", eyebrow: "Architectural drawing · Sectional study BB", title: "Section BB" },
+      { src: forumD9.url, alt: "Forum des arts traditionnels — section CC", caption: "Coupe CC", kind: "section", layout: "contained", eyebrow: "Architectural drawing · Sectional study CC", title: "Section CC" },
     ],
   },
   {
@@ -197,6 +208,9 @@ export const projects: Project[] = [
     cover: {
       src: museeP1.url,
       alt: "Musée de l'écriture — exterior view",
+      kind: "render",
+      eyebrow: "Musée de l'écriture · Exterior visualization",
+      title: "The museum entrance and forecourt",
     },
     shortDescription:
       "[To complete] A one-sentence summary of the project.",
@@ -204,19 +218,19 @@ export const projects: Project[] = [
       "[To complete] Describe the brief, the site and the main design decisions of the Musée de l'écriture.",
     ],
     photos: [
-      { src: museeP1.url, alt: "Musée de l'écriture — view 1", kind: "render" },
-      { src: museeP2.url, alt: "Musée de l'écriture — view 2", kind: "render", layout: "half" },
-      { src: museeP3.url, alt: "Musée de l'écriture — view 3", kind: "render", layout: "half" },
-      { src: museeP4.url, alt: "Musée de l'écriture — view 4", kind: "render", layout: "half" },
-      { src: museeP5.url, alt: "Musée de l'écriture — view 5", kind: "render", layout: "half" },
-      { src: museeP6.url, alt: "Musée de l'écriture — view 6", kind: "render" },
+      { src: museeP1.url, alt: "Musée de l'écriture — view 1", kind: "render", eyebrow: "Exterior · Entrance perspective", title: "Approaching the glazed entrance" },
+      { src: museeP2.url, alt: "Musée de l'écriture — view 2", kind: "render", layout: "half", captionExcluded: true },
+      { src: museeP3.url, alt: "Musée de l'écriture — view 3", kind: "render", layout: "half", eyebrow: "Interior · Exhibition perspective", title: "The sculpture exhibition space" },
+      { src: museeP4.url, alt: "Musée de l'écriture — view 4", kind: "render", layout: "half", eyebrow: "Interior · Daylit gallery", title: "A passage beneath the skylight" },
+      { src: museeP5.url, alt: "Musée de l'écriture — view 5", kind: "render", layout: "half", eyebrow: "Interior · Light and enclosure", title: "The exhibition room opening to daylight" },
+      { src: museeP6.url, alt: "Musée de l'écriture — view 6", kind: "render", eyebrow: "Landscape · Roof perspective", title: "Walking across the planted roof" },
     ],
     drawings: [
-      { src: museeD1.url, alt: "Musée de l'écriture — ground floor plan", caption: "Plan RDC", kind: "plan", layout: "contained" },
-      { src: museeD2.url, alt: "Musée de l'écriture — basement plan", caption: "Plan sous-sol", kind: "plan", layout: "contained" },
-      { src: museeD3.url, alt: "Musée de l'écriture — elevation", caption: "Élévation", kind: "elevation", layout: "contained" },
-      { src: museeD4.url, alt: "Musée de l'écriture — section A-A", caption: "Coupe A-A", kind: "section", layout: "contained" },
-      { src: museeD5.url, alt: "Musée de l'écriture — section B-B", caption: "Coupe B-B", kind: "section", layout: "contained" },
+      { src: museeD1.url, alt: "Musée de l'écriture — ground floor plan", caption: "Plan RDC", kind: "plan", layout: "contained", eyebrow: "Architectural drawing · Ground level", title: "Museum ground floor plan" },
+      { src: museeD2.url, alt: "Musée de l'écriture — basement plan", caption: "Plan sous-sol", kind: "plan", layout: "contained", eyebrow: "Architectural drawing · Below ground", title: "Museum basement plan" },
+      { src: museeD3.url, alt: "Musée de l'écriture — elevation", caption: "Élévation", kind: "elevation", layout: "contained", eyebrow: "Architectural drawing · Facade study", title: "Museum elevation" },
+      { src: museeD4.url, alt: "Musée de l'écriture — section A-A", caption: "Coupe A-A", kind: "section", layout: "contained", eyebrow: "Architectural drawing · Sectional study A-A", title: "Museum section A-A" },
+      { src: museeD5.url, alt: "Musée de l'écriture — section B-B", caption: "Coupe B-B", kind: "section", layout: "contained", eyebrow: "Architectural drawing · Sectional study B-B", title: "Museum section B-B" },
     ],
   },
 ];
